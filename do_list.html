@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="do_list.css">
+</head>
+<body>
+    <span class="title">My to do list</span>
+    <form>
+     <input type="text" placeholder="Enter a Task"   id="list" >
+     <button type="submit" ><i class="fa fa-plus" id="add"></i></button>
+     <p class="comple">Σμπλήρωσε τα κενά</p> 
+     <ul class="keimeno"></ul>
+   </form>
+  
+</body>
+    
+<script>
+    const add_button = document.querySelector('#add');
+    const list = document.querySelector('#list');
+    const keimeno = document.querySelector('.keimeno');
+    const form = document.querySelector('form');
+    const required = document.querySelector('.comple');
+
+   form.addEventListener('submit',function(e){
+       e.preventDefault();
+       add_list();
+   })
+    function add_list(){
+        add_button.addEventListener('click',()=>{
+
+            var div_e = document.createElement('div');
+            div_e.classList.add('todo_lol');
+            
+            var newDo = document.createElement('li');
+             newDo.classList.add('list_do')
+             div_e.append(newDo);
+
+    
+            var delete_button = document.createElement('button');
+            delete_button.classList.add('delete_do')
+            delete_button.innerHTML = '  <i class="fa fa-minus"></i>'
+            div_e.append(delete_button)
+            
+            var ckecked_button = document.createElement('button');
+            ckecked_button.classList.add('checked_do');
+            ckecked_button.innerHTML = '<i class="fa fa-check"></i>'
+            div_e.append(ckecked_button)
+            
+            
+            var edit = document.createElement("button");
+            edit.classList.add('edit_do');
+            edit.innerHTML = '  <i class = "fa fa-plus"></i>' ;
+            div_e.append(edit);
+           
+
+           div_e.classList.add('checked_do_list');
+
+            if(list.value ===''){
+                 required.style.display = 'block';
+              
+            }
+            else{
+              
+                
+               newDo.append(list.value);
+               keimeno.append(div_e);
+                list.value = '';
+                delete_button.addEventListener('click',()=>{
+                div_e.remove();
+            });
+        
+            edit.addEventListener('click',()=>{
+                console.log(keimeno);
+            });
+     } });
+        }
+      
+    
+        
+
+
+
+
+</script>
+
+</html>
